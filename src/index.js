@@ -5,7 +5,7 @@ import { compose } from "redux";
 import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import reducer from "./reducers";
-import App from "./App";
+import App from "./routes/App";
 
 const initialState = {
   favoriteCharacters: [],
