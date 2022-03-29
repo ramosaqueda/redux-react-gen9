@@ -30,7 +30,7 @@ const CharacterList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="characterList">
       {loading ? (
         <Loader />
       ) : error ? (
