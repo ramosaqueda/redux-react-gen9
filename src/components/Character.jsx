@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-//import propTypes from "prop-types";
+import propTypes from "prop-types";
 import { setFavorite, deleteFavorite } from "../actions";
 import "../assets/styles/components/Character.scss";
 import { ReactComponent as SVGStar } from "../assets/static/icons/star.svg";
@@ -86,6 +86,11 @@ const Character = (props) => {
   );
 };
 
+// Component Documentation
+Character.propTypes = {
+  data: propTypes.object,
+};
+
 // react-redux native with HOC
 const mapStateToProps = (state) => {
   return {
@@ -100,5 +105,8 @@ const mapDispatchToProps = {
 
 // HOC
 export default connect(mapStateToProps, mapDispatchToProps)(Character);
+
+// Alias Component in the browser
+Character.displayName = "Character Component";
 
 
