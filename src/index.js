@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import reducer from "./reducers";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import App from "./routes/App";
 
 const initialState = {
