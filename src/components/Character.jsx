@@ -6,22 +6,15 @@ import "../assets/styles/components/Character.scss";
 import { ReactComponent as SVGStar } from "../assets/static/icons/star.svg";
 import CharacterDetail from "./CharacterDetail";
 import Modal from "./Modal";
+import useModal from "../custom-hooks/useModal";
 
 const Character = (props) => {
-  const [modal, setModal] = useState(false);
   const [favorite, setFavorite] = useState(false);
+  const { modal, handleCloseModal, handleOpenModal } = useModal();
 
   // props
   const { data, favoriteCharacters } = props;
   const { id, image, name, status, gender, species } = data;
-
-  const handleCloseModal = () => {
-    setModal(false);
-  };
-
-  const handleOpenModal = () => {
-    setModal(true);
-  };
 
   const handleSetFavorite = () => {
     props.setFavorite({ data });
@@ -35,7 +28,7 @@ const Character = (props) => {
 
   const isFavorite = () => {
     const result = favoriteCharacters.filter(
-      (favoriteCharacter) => favoriteCharacter.data.id === id,
+      (favoriteCharacter) => favoriteCharacter.data.id === id
     );
     if (result.length) {
       setFavorite(true);
@@ -44,7 +37,7 @@ const Character = (props) => {
 
   useEffect(() => {
     isFavorite();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -80,7 +73,7 @@ const Character = (props) => {
         </p>
       </div>
       <Modal isOpen={modal} onClose={handleCloseModal}>
-          <CharacterDetail data={data} />
+        <CharacterDetail data={data} />
       </Modal>
     </div>
   );
@@ -95,7 +88,7 @@ Character.propTypes = {
 const mapStateToProps = (state) => {
   return {
     favoriteCharacters: state.favoriteCharacters,
-  }
+  };
 };
 
 const mapDispatchToProps = {
@@ -108,5 +101,3 @@ export default connect(mapStateToProps, mapDispatchToProps)(Character);
 
 // Alias Component in the browser
 Character.displayName = "Character Component";
-
-
